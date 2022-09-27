@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class OutfitSelect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Return_Button()
     {
-        
+        MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Continue_Button()
     {
-        
+        MenuManager.OpenMenu(Menu.BATTLE, gameObject);
     }
 }

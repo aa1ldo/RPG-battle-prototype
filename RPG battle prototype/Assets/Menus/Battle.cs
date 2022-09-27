@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject quitModal;
+    public void Run_Button()
     {
-        
+        quitModal.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    // In modal window:
+    public void Quit_Button()
     {
-        
+        quitModal.SetActive(false);
+        MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
+    }
+
+    public void Stay_Button()
+    {
+        quitModal.SetActive(false);
     }
 }
