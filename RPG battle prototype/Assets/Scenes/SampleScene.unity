@@ -6412,7 +6412,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  dmgRecieved: 2
+  damage: 2
+  hitcritmissMulti:
+  - 0
+  - 1
+  - 1.5
   healthBar: {fileID: 1022807356}
 --- !u!1 &1878722489
 GameObject:

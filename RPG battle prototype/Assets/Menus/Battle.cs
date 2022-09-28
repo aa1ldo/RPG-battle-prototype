@@ -14,6 +14,7 @@ public class Battle : MonoBehaviour
     public void Quit_Button()
     {
         quitModal.SetActive(false);
+        // Reset player + enemy health
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
     }
 

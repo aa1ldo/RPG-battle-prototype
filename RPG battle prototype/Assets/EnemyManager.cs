@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    public int dmgRecieved;
+    public int damage = 2;
 
     public EnemyHealth healthBar;
 
@@ -17,9 +17,11 @@ public class EnemyManager : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
+    // Controlled by attack button:
     public void TakeDamage()
     {
-        currentHealth -= dmgRecieved;
-        healthBar.SetHealth(currentHealth);
+        currentHealth -= damage;
+
+        // If pressed for the first time, start the coroutine that carries out enemy attacks
     }
 }

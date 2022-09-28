@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    // Will be controlled by a coroutine:
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
