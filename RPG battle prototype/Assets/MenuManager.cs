@@ -3,12 +3,13 @@ using UnityEngine;
 public static class MenuManager
 {
     public static bool IsInitialised { get; private set; }
-    public static GameObject mainMenu, settingsMenu, outfitSelect, battle, results;
+    public static GameObject mainMenu, settingsMenu, guideMenu, outfitSelect, battle, results;
     public static void Init()
     {
         GameObject canvas = GameObject.Find("Canvas");
         mainMenu = canvas.transform.Find("MainMenu").gameObject;
         settingsMenu = canvas.transform.Find("SettingsMenu").gameObject;
+        settingsMenu = canvas.transform.Find("GuideMenu").gameObject;
         outfitSelect = canvas.transform.Find("OutfitSelect").gameObject;
         battle = canvas.transform.Find("Battle").gameObject;
         results = canvas.transform.Find("Results").gameObject;

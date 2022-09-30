@@ -4,26 +4,65 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100f;
+    public float currentHealth;
+    public int damage;
+    public int defense;
+    public float critMultiplier;
+    public float damageDelay;
+    float damageDealt;
+
+    int hitChance;
+    int missChance;
 
     public PlayerHealth healthBar;
 
-    private void Start()
+    public EnemyManager enemyManager;
+
+    private void OnEnable()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        StartCoroutine(DamageProcess());
     }
 
     private void Update()
     {
-
+        if (currentHealth <= 0f)
+        {
+            GameManager.Instance.YouWin = false;
+            GameManager.Instance.BattleOver = true;
+        }
     }
 
-    // Will be controlled by a coroutine:
-    void TakeDamage(int damage)
+    // Enemy attacks:
+    IEnumerator DamageProcess()
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        while (true)
+        {
+            hitChance = Random.Range(1, 10);
+            missChance = Random.Range(1, 10) - 2;
+
+            if (hitChance > missChance)
+            {
+                damageDealt = enemyManager.damage * 100 / (100 + defense);
+            }
+            else if (hitChance == missChance)
+            {
+                damageDealt = enemyManager.damage * critMultiplier;
+            }
+            else
+            {
+                damageDealt = 0f;
+            }
+
+            currentHealth -= damageDealt;
+            healthBar.SetHealth(currentHealth);
+
+            Debug.Log("Ouch");
+
+            yield return new WaitForSeconds(enemyManager.damageDelay);
+        }
     }
 }
