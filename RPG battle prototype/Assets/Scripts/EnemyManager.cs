@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
     public float critMultiplier;
     public float damageDelay;
     public string currentStyle;
-    float styleMultiplier;
+    public float styleMultiplier = 1f;
     string[] styles = { "CUTE", "CASUAL", "EDGY" };
 
     float damageDealt;
@@ -26,11 +26,14 @@ public class EnemyManager : MonoBehaviour
 
     public Button attackButton;
 
+    public Animator playerAnim;
+
     private void OnEnable()
     {
         currentStyle = styles[Random.Range(0, 3)];
 
-        // Calculating style effectiveness:
+        // SET ENEMY STATS HERE BASED ON STYLE
+        // ......
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -42,6 +45,34 @@ public class EnemyManager : MonoBehaviour
         {
             GameManager.Instance.YouWin = true;
             GameManager.Instance.BattleOver = true;
+
+            attackButton.interactable = true;
+        }
+
+        // Calculate style effectivness
+        if (currentStyle == "CUTE" && playerManager.currentStyle == "EDGY")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "EDGY" && playerManager.currentStyle == "CASUAL")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "CASUAL" && playerManager.currentStyle == "CUTE")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "EDGY" && playerManager.currentStyle == "CUTE")
+        {
+            styleMultiplier = 1f;
+        }
+        else if (currentStyle == "CUTE" && playerManager.currentStyle == "CASUAL")
+        {
+            styleMultiplier = 1f;
+        }
+        else if (currentStyle == "CASUAL" && playerManager.currentStyle == "EDGY")
+        {
+            styleMultiplier = 1f;
         }
     }
 
@@ -66,14 +97,20 @@ public class EnemyManager : MonoBehaviour
 
         if(hitChance > missChance)
         {
+            // Play PLAYER attack animation
+            playerAnim.SetTrigger("Hit");
             damageDealt = playerManager.damage * 100 / (100 + defense) * styleMultiplier;
         }
         else if(hitChance == missChance)
         {
+            // Play PLAYER attack animation
+            playerAnim.SetTrigger("Crit");
             damageDealt = playerManager.damage * critMultiplier;
         }
         else
         {
+            // Play PLAYER miss animation
+            playerAnim.SetTrigger("Miss");
             damageDealt = 0f;
         }
 

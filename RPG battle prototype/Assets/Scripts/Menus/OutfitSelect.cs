@@ -223,65 +223,65 @@ public class OutfitSelect : MonoBehaviour
         // Head accessories:
         if(headStyles[headIndex] == "CUTE")
         {
-            cuteCounter++;
+            cuteCounter += 3;
         }
 
         if (headStyles[headIndex] == "CASUAL")
         {
-            casualCounter++;
+            casualCounter += 3;
         }
 
         if (headStyles[headIndex] == "EDGY")
         {
-            edgyCounter++;
+            edgyCounter += 3;
         }
 
         // Torso tops:
         if (torsoStyles[torsoIndex] == "CUTE")
         {
-            cuteCounter += 2;
+            cuteCounter += 5;
         }
 
         if (torsoStyles[torsoIndex] == "CASUAL")
         {
-            casualCounter += 2;
+            casualCounter += 5;
         }
 
         if (torsoStyles[torsoIndex] == "EDGY")
         {
-            edgyCounter += 2;
+            edgyCounter += 5;
         }
 
         // Legs bottoms:
         if (legsStyles[legsIndex] == "CUTE")
         {
-            cuteCounter += 2;
+            cuteCounter += 4;
         }
 
         if (legsStyles[legsIndex] == "CASUAL")
         {
-            casualCounter += 2;
+            casualCounter += 4;
         }
 
         if (legsStyles[legsIndex] == "EDGY")
         {
-            edgyCounter += 2;
+            edgyCounter += 4;
         }
 
         // Feet shoes:
         if (feetStyles[feetIndex] == "CUTE")
         {
-            cuteCounter++;
+            cuteCounter += 3;
         }
 
         if (feetStyles[feetIndex] == "CASUAL")
         {
-            casualCounter++;
+            casualCounter += 3;
         }
 
         if (feetStyles[feetIndex] == "EDGY")
         {
-            edgyCounter++;
+            edgyCounter += 3;
         }
 
         if (cuteCounter > casualCounter && cuteCounter > edgyCounter)

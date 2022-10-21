@@ -16,6 +16,7 @@ public class Battle : MonoBehaviour
     {
         quitModal.SetActive(false);
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
+        GameManager.Instance.BattleOver = false;
         Time.timeScale = 1;
     }
 

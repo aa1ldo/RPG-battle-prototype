@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public float damageDelay;
     public string currentStyle;
 
+    public float styleMultiplier = 1f;
+
     float damageDealt;
 
     int hitChance;
@@ -23,11 +25,8 @@ public class PlayerManager : MonoBehaviour
 
     public OutfitSelect outfitSelect;
 
-    private void OnEnable()
+    private void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-
         if (outfitSelect.CalculateStyle() == 0)
         {
             currentStyle = "CUTE";
@@ -40,9 +39,15 @@ public class PlayerManager : MonoBehaviour
         {
             currentStyle = "EDGY";
         }
+    }
 
-        // Calculating style effectiveness:
-        // if(currentStyle == "CUTE" && enemyManager.currentStyle == )
+    private void OnEnable()
+    {
+        // SET PLAYER STATS HERE BASED ON STYLE
+        // ......
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         StartCoroutine(DamageProcess());
     }
@@ -53,6 +58,33 @@ public class PlayerManager : MonoBehaviour
         {
             GameManager.Instance.YouWin = false;
             GameManager.Instance.BattleOver = true;
+        }
+
+        // Calculate style effectiveness:
+
+        if (currentStyle == "CUTE" && enemyManager.currentStyle == "EDGY")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "EDGY" && enemyManager.currentStyle == "CASUAL")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "CASUAL" && enemyManager.currentStyle == "CUTE")
+        {
+            styleMultiplier = 1.1f;
+        }
+        else if (currentStyle == "EDGY" && enemyManager.currentStyle == "CUTE")
+        {
+            styleMultiplier = 1f;
+        }
+        else if (currentStyle == "CUTE" && enemyManager.currentStyle == "CASUAL")
+        {
+            styleMultiplier = 1f;
+        }
+        else if (currentStyle == "CASUAL" && enemyManager.currentStyle == "EDGY")
+        {
+            styleMultiplier = 1f;
         }
     }
 
@@ -66,16 +98,18 @@ public class PlayerManager : MonoBehaviour
 
             if (hitChance > missChance)
             {
-                damageDealt = enemyManager.damage * 100 / (100 + defense);
+                damageDealt = enemyManager.damage * 100 / (100 + defense) * styleMultiplier;
             }
             else if (hitChance == missChance)
             {
-                damageDealt = enemyManager.damage * critMultiplier;
+                damageDealt = enemyManager.damage * critMultiplier * styleMultiplier;
             }
             else
             {
                 damageDealt = 0f;
             }
+
+            // Play ENEMY attack animation
 
             currentHealth -= damageDealt;
             healthBar.SetHealth(currentHealth);

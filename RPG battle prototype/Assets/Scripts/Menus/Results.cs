@@ -9,6 +9,7 @@ public class Results : MonoBehaviour
     public void Quit_Menu()
     {
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
+        GameManager.Instance.BattleOver = false;
     }
 
     private void Update()
