@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class OutfitSelect : MonoBehaviour
 {
+    public AudioSource spraySFX;
+
     public Sprite[] headAccessories;
     public string[] headStyles;
     public int headIndex = 0;
@@ -69,7 +71,8 @@ public class OutfitSelect : MonoBehaviour
 
     public void RightButton_Head()
     {
-        if(headIndex >= headAccessories.Length - 1)
+        spraySFX.Play();
+        if (headIndex >= headAccessories.Length - 1)
         {
             headIndex = 0;
         }
@@ -86,6 +89,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void LeftButton_Head()
     {
+        spraySFX.Play();
         if (headIndex <= 0)
         {
             headIndex = headAccessories.Length - 1;
@@ -103,6 +107,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void RightButton_Torso()
     {
+        spraySFX.Play();
         if (torsoIndex >= torsoTops.Length - 1)
         {
             torsoIndex = 0;
@@ -120,6 +125,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void LeftButton_Torso()
     {
+        spraySFX.Play();
         if (torsoIndex <= 0)
         {
             torsoIndex = torsoTops.Length - 1;
@@ -137,6 +143,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void RightButton_Legs()
     {
+        spraySFX.Play();
         if (legsIndex >= legsBottoms.Length - 1)
         {
             legsIndex = 0;
@@ -154,6 +161,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void LeftButton_Legs()
     {
+        spraySFX.Play();
         if (legsIndex <= 0)
         {
             legsIndex = legsBottoms.Length - 1;
@@ -171,6 +179,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void RightButton_Feet()
     {
+        spraySFX.Play();
         if (feetIndex >= feetShoes.Length - 1)
         {
             feetIndex = 0;
@@ -188,6 +197,7 @@ public class OutfitSelect : MonoBehaviour
 
     public void LeftButton_Feet()
     {
+        spraySFX.Play();
         if (feetIndex <= 0)
         {
             feetIndex = feetShoes.Length - 1;
@@ -205,11 +215,13 @@ public class OutfitSelect : MonoBehaviour
 
     public void Return_Button()
     {
+        spraySFX.Play();
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
     }
 
     public void Continue_Button()
     {
+        spraySFX.Play();
         MenuManager.OpenMenu(Menu.BATTLE, gameObject);
         continuePressed = true;
     }
