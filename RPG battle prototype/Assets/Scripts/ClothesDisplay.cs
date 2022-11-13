@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OutfitDisplay : MonoBehaviour
+public class ClothesDisplay : MonoBehaviour
 {
     public OutfitSelect outfitSelect;
     Image accessory;

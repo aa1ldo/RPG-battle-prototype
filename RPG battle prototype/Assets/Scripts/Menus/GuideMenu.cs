@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GuideMenu : MonoBehaviour
 {
-    public AudioSource spraySFX;
+    public AudioClip returnSFX;
     public void ReturnButton()
     {
-        spraySFX.Play();
+        GameManager.Instance.PlaySound(returnSFX);
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
     }
 }

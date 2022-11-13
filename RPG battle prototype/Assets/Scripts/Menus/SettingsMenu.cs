@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioSource spraySFX;
+    public AudioClip returnSFX;
     public void Return_Button()
     {
-        spraySFX.Play();
+        GameManager.Instance.PlaySound(returnSFX);
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
     }
 }

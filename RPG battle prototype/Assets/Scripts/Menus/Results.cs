@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class Results : MonoBehaviour
 {
-    public TMP_Text text;
+    public AudioClip returnSFX;
+    public Image image;
+
+    public Sprite winSp;
+    public Sprite loseSp;
     public void Quit_Menu()
     {
+        GameManager.Instance.PlaySound(returnSFX);
         MenuManager.OpenMenu(Menu.MAIN_MENU, gameObject);
         GameManager.Instance.BattleOver = false;
     }
@@ -16,11 +21,11 @@ public class Results : MonoBehaviour
     {
         if (GameManager.Instance.YouWin && GameManager.Instance.BattleOver)
         {
-            text.text = "Congratulations! You Win!";
+            image.sprite = winSp;
         }
         else if (!GameManager.Instance.YouWin && GameManager.Instance.BattleOver)
         {
-            text.text = "Bad luck! You lost.";
+            image.sprite = loseSp;
         }
     }
 }

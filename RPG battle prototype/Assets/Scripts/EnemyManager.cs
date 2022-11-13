@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    public AudioClip[] hitSFXs;
+    public AudioClip missSFX;
+    public AudioClip critSFX;
+
     public float maxHealth = 100f;
     public float currentHealth;
     public int damage;
@@ -31,6 +35,8 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         currentStyle = styles[Random.Range(0, 3)];
+        attackButton.interactable = true;
+        attackButton.enabled = true;
 
         // SET ENEMY STATS HERE BASED ON STYLE
         // ......
@@ -99,18 +105,25 @@ public class EnemyManager : MonoBehaviour
         {
             // Play PLAYER attack animation
             playerAnim.SetTrigger("Hit");
+
+            int rIndex = Random.Range(0, 2);
+            GameManager.Instance.PlaySound(hitSFXs[rIndex]);
+
             damageDealt = playerManager.damage * 100 / (100 + defense) * styleMultiplier;
         }
         else if(hitChance == missChance)
         {
             // Play PLAYER attack animation
             playerAnim.SetTrigger("Crit");
+            GameManager.Instance.PlaySound(critSFX);
+
             damageDealt = playerManager.damage * critMultiplier;
         }
         else
         {
             // Play PLAYER miss animation
             playerAnim.SetTrigger("Miss");
+            GameManager.Instance.PlaySound(missSFX);
             damageDealt = 0f;
         }
 
